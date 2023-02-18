@@ -1,0 +1,75 @@
+{
+  "models": [
+    {
+      "_id": "1",
+      "title": " Sagittal cut of the human cranium and mandible",
+      "url": "https://sketchfab.com/models/5e73a548332742c8bc722d5f14ae35f0/embed",
+      "credit": {
+        "url": "https://sketchfab.com/eLearningUMCG?utm_medium=embed&utm_campaign=share-popup&utm_content=5e73a548332742c8bc722d5f14ae35f0",
+        "title": " E-learning UMCG"
+      },
+      "catergory": "head"
+    },
+    {
+      "_id": "2",
+      "title": " Sagittal cut of the human cranium and mandible",
+      "url": "https://sketchfab.com/models/5e73a548332742c8bc722d5f14ae35f0/embed",
+      "credit": {
+        "url": "https://sketchfab.com/eLearningUMCG?utm_medium=embed&utm_campaign=share-popup&utm_content=5e73a548332742c8bc722d5f14ae35f0",
+        "title": " E-learning UMCG"
+      },
+      "catergory": "thorax"
+    },
+    {
+      "_id": "13",
+      "title": " Sagittal cut of the human cranium and mandible",
+      "url": "https://sketchfab.com/models/5e73a548332742c8bc722d5f14ae35f0/embed",
+      "credit": {
+        "url": "https://sketchfab.com/eLearningUMCG?utm_medium=embed&utm_campaign=share-popup&utm_content=5e73a548332742c8bc722d5f14ae35f0",
+        "title": " E-learning UMCG"
+      },
+      "catergory": "head"
+    }
+  ],
+
+  "authors": [
+    {
+      "_id": "474",
+      "name": "Okafor Henry",
+      "title": ["Dr", "Msc", "Bsc"],
+      "materials": ["Dr", "Msc", "Bsc"]
+    },
+    {
+      "_id": "680",
+      "name": "Afor Ikengi",
+      "title": ["Dr", "Msc", "Bsc"],
+
+      "materials": ["Dr", "Msc", "Bsc"]
+    },
+    {
+      "_id": "568",
+      "name": "Kenneth Iwuru",
+      "title": ["Dr", "Msc", "Bsc"],
+      "materials": ["Dr", "Msc", "Bsc"]
+    },
+    {
+      "_id": "50",
+      "name": "Kenneth Okpara",
+
+      "title": ["Dr", "Msc", "Bsc"],
+      "materials": ["Msc", "Bsc"]
+    },
+    {
+      "_id": "5",
+      "name": " Iwuru Ikegi",
+      "title": ["Dr", "Msc", "Bsc"],
+      "materials": ["Bsc"]
+    },
+    {
+      "_id": "58",
+      "name": "Ochanya Aya",
+      "title": ["Dr", "Msc", "Bsc"],
+      "materials": ["Dr", "Msc", "Bsc"]
+    }
+  ]
+}
