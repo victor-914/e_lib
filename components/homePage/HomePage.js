@@ -11,11 +11,11 @@ function HomePage() {
   return (
     <>
       <main className="">
-        <div className="logoContainer   items-center justify-center flex flex-col py-8">
+        <div className="logoContainer  items-center justify-center flex flex-col py-8">
           <div>
             <Image src={logo} alt="UNN_logo" />
           </div>
-          <header className="py-8 text-2xl font-semibold font-sans">
+          <header className="py-8  font-bold font-sans w-full text-center">
             DEPARTMENT OF HUMAN ANATOMY
           </header>
         </div>
@@ -23,7 +23,7 @@ function HomePage() {
           <main>
             <Image src={heroBg} />
           </main>
-          <header className="py-8 text-2xl font-semibold font-sans">
+          <header className="py-8 text-center  font-semibold font-sans w-full ">
             PROVISION OF PEDAGOGIC MATERIALS ON ANATOMICAL SCIENCE
           </header>
         </section>
@@ -63,7 +63,7 @@ function HomePage() {
         </div>
       </main>
       <section className="flex w-full pt-2.5 justify-center items-center h-auto mt-8 mb-8">
-        <div className=" flex w-full  justify-center items-center">
+        <div className=" flex w-full  flex-col sm:flex-row sm:justify-center  items-center">
           {TopicSummary.map((item) => (
             <Card item={item} />
           ))}

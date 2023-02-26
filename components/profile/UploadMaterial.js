@@ -1,42 +1,61 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-
+import FormData from "form-data";
 function UploadMaterial() {
+  useEffect(() => {
+    const auth = localStorage.getItem("access");
+    if (!auth) {
+      router.push("/login");
+    }
+  }, []);
+
   const [state, setState] = useState({
     title: "",
-    url: "",
+    comment: "",
     catergory: "",
-    credit: "",
+    file: "",
   });
 
-  const [err, setErr] = useState();
-  const [success, setSuccess] = useState(false);
-
+  const [success, setSuccess] = useState("");
+  const [files, setFiles] = useState();
   const router = useRouter();
-
-  useEffect(() => {
-    err && router.reload(window.location.pathname);
-  }, [err]);
 
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
-    console.log(state);
+    if (name === "file") {
+      let fileArray = Object.values(e.target.files);
+      setFiles(fileArray);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(state, "state");
+
+    const formData = new FormData();
+    let entries = Object.entries(state);
+    for (let i = 0; i < files.length; i++) {
+      formData.append(files[i].name, files[i]);
+    }
+    for (let ii = 0; ii < entries.length; ii++) {
+      const key = entries[ii][0];
+      const value = entries[ii][1];
+      formData.append(key, value);
+    }
     try {
       (async () => {
         try {
           const response = await axios
-            .post(`http://localhost:5000/api/model`, state)
-            .then((response) => response.data && setSuccess(true));
+            .post(`http://localhost:5000/api/file/img`, formData)
+            .then((response) => {
+              console.log(response, "RESPONSE");
+              response.data &&
+                setSuccess("uploaded successfully") &&
+                alert(success);
+            });
         } catch (e) {
-          setErr(e);
           alert(e);
         }
       })();
@@ -45,21 +64,21 @@ function UploadMaterial() {
     } finally {
       setState({
         title: "",
-        url: "",
+        comment: "",
         catergory: "",
-        credit: "",
+        file: "",
       });
     }
   };
 
   return (
     <form
+      encType="multipart/form-data"
+      method="post"
       onSubmit={handleSubmit}
-      class=" w-full flex flex-col items-center justify-around bg-slate-100 p-6 h-screen"
+      class=" w-full flex flex-col items-center justify-around bg-slate-100 p-6 h-auto"
     >
-      <header className="uppercase font-bold">{`${
-        success ? "Upload successfull" : "Add new resource"
-      }`}</header>
+      <header className="uppercase font-bold"> Add new resource</header>
 
       <div class="flex justify-center p-4">
         <div class="mb-3 xl:w-96">
@@ -74,7 +93,7 @@ function UploadMaterial() {
             class="
         form-control
         block
-        w-full
+        w-96
         px-3
         py-1.5
         text-base
@@ -91,22 +110,54 @@ function UploadMaterial() {
             id="title"
             placeholder="e.g upper limb"
             name="title"
+            required
             value={state.title}
             onChange={handleChange}
           />
         </div>
       </div>
 
-      <div class="mb-3 xl:w-96">
-        <label
-          for="exampleFormControlInput1"
-          class="form-label inline-block mb-2 text-gray-700"
-        >
-          Url
-        </label>
-        <input
-          type="text"
-          class="
+      <div class="flex justify-center">
+        <div class="mb-3 w-96">
+          <input
+            class="form-control
+    block
+    w-full
+    px-3
+    py-1.5
+    text-base
+    font-normal
+    text-gray-700
+    bg-white bg-clip-padding
+    border border-solid border-gray-300
+    rounded
+    transition
+    ease-in-out
+    m-0
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            type="file"
+            name="file"
+            id="file"
+            required
+            placeholder="add image"
+            // multiple
+            accept="image/*"
+            value={state.file}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+
+      <div class="flex justify-center">
+        <div class="mb-3 xl:w-96 w-96">
+          <label
+            for="exampleFormControlTextarea1"
+            class="form-label inline-block mb-2 text-gray-700"
+          >
+            Comments
+          </label>
+          <textarea
+            class="
         form-control
         block
         w-full
@@ -121,15 +172,19 @@ function UploadMaterial() {
         transition
         ease-in-out
         m-0
-        focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
       "
-          id="url"
-          placeholder="url"
-          name="url"
-          value={state.url}
-          onChange={handleChange}
-        />
+            id="comment"
+            placeholder="Your message"
+            type="text"
+            name="comment"
+            required
+            value={state.comment}
+            onChange={handleChange}
+          ></textarea>
+        </div>
       </div>
+
       <div class="flex justify-center">
         <div class="mb-3 xl:w-96">
           <label className="form-label inline-block mb-2 text-gray-700">
@@ -150,11 +205,13 @@ function UploadMaterial() {
       rounded
       transition
       ease-in-out
+      w-96
       m-0
       focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
             aria-label="Default select example"
             onChange={handleChange}
             value={state.catergory}
+            required
             name="catergory"
           >
             <option>--select catergory--</option>
@@ -167,39 +224,7 @@ function UploadMaterial() {
           </select>
         </div>
       </div>
-      <div class="mb-3 xl:w-96">
-        <label
-          for="exampleFormControlInput1"
-          class="form-label inline-block mb-2 text-gray-700"
-        >
-          Credit
-        </label>
-        <input
-          type="text"
-          class="
-        form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none
-      "
-          id="credit"
-          placeholder="credit"
-          name="credit"
-          value={state.credit}
-          onChange={handleChange}
-        />
-      </div>
+
       <div class="mb-3 w-96 p-4 flex justify-center items-center">
         <button
           type="button"

@@ -5,29 +5,28 @@ import AuthContext from "../../context/contextProvider";
 
 function Login({ setState }) {
   const { setAuth, auth } = useContext(AuthContext);
+
   const [login, setLogin] = useState({
     email: "",
     password: "",
   });
+
   const router = useRouter();
+
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
-    console.log(login, "jdjd");
   };
   const handleSubmit = async (e) => {
-    console.log(login);
     e.preventDefault();
     try {
       const response = await axios
         .post("http://localhost:5000/api/author/login", login)
         .then((response) => {
-          setAuth({ ...response?.data });
-          console.log(response.data);
-          localStorage.setItem("access", response?.data?.accessToken);
+          setAuth(response?.data);
+          localStorage.setItem("access", response?.data);
           response.data && router.push("/profile");
-          console.log(auth, "A");
         });
     } catch (err) {
       console.log(`Error: ${err.message}`);
@@ -35,8 +34,9 @@ function Login({ setState }) {
   };
 
   return (
-    <form className="form pt-8">
+    <form className="form pt-8 sm:w-3/5 sm:m-auto">
       <div class="mb-6">
+        <label className=" text-gray-500">Email</label>
         <input
           type="text"
           name="email"
@@ -49,6 +49,8 @@ function Login({ setState }) {
       </div>
 
       <div class="mb-6">
+        <label className=" text-gray-500">Password</label>
+
         <input
           type="password"
           name="password"

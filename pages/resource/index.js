@@ -1,11 +1,9 @@
 import React from "react";
-import ResourceDashBoard from "../../components/resourceComp/ResourceDashBoard";
-import ResourceLandingPage from "../../components/resourceComp/ResourceLandingPage";
+import ResourceLandingPage from "../../components/gallery//ResourceLandingPage";
 
 function ResourceHomePage() {
   return (
-    <main className="flex ">
-      <ResourceDashBoard />
+    <main className="flex flex-wrap ">
       <ResourceLandingPage />
     </main>
   );

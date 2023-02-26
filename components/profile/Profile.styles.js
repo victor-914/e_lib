@@ -1,5 +1,5 @@
-import styled from "styled-components";
+// import styled from "styled-components";
 
-const StyledProfile = styled.div``;
+// const StyledProfile = styled.div``;
 
-export default StyledProfile;
+// export default StyledProfile;

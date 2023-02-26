@@ -5,6 +5,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    domains: ["res.cloudinary.com"],
+  },
   future: { webpack5: true },
   // swcMinify: true,
   webpack(config, options) {

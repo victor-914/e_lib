@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import styled from "styled-components";
 
 function Card({ item }) {
   return (
-    <StyledCard className="flex justify-around  ">
+    <div className="flex justify-around  mt-8">
       <div className="w-4/5 shadow items-center" key={item._id}>
         <div className="rounded-lg shadow-lg bg-white max-w-sm">
           <Image
@@ -32,14 +31,8 @@ function Card({ item }) {
           </div>
         </div>
       </div>
-    </StyledCard>
+    </div>
   );
 }
 
 export default Card;
-
-const StyledCard = styled.div`
-  /* width: 30%; */
-  /* background: GREEN; */
-  /* border: 1px solid grey; */
-`;

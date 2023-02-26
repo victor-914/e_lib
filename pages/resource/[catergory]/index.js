@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import CatergoryPage from "../../../components/resourceComp/CatergoryPage";
+import CatergoryPage from "../../../components/gallery/CatergoryPage";
 
 function Catergory() {
   const router = useRouter();
@@ -14,14 +14,14 @@ function Catergory() {
     (async () => {
       try {
         setState("loading");
-        const response = await axios.get(`http://localhost:5000/api/model`);
-        let data = await response.data;
-        const filtered = data?.filter((item) => item.catergory === catergory);
-        setFilteredData(filtered);
-        localStorage.setItem("modelData", JSON.stringify(filteredData));
+        const response = await axios.get(
+          `http://localhost:5000/api/file/${catergory}`
+        );
+        let data = response.data;
+        setFilteredData(data);
         setState("success");
       } catch (e) {
-        console.log(e);
+        alert(e);
       }
     })();
   }, []);
