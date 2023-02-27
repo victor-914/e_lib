@@ -4,8 +4,6 @@ import { useRouter } from "next/router";
 import FormData from "form-data";
 import { handleLogout } from "../../utils/helperFunction";
 function UploadMaterial() {
-  const URL = process.env.API_URL;
-
   useEffect(() => {
     const auth = localStorage.getItem("access");
     if (!auth) {
@@ -51,7 +49,10 @@ function UploadMaterial() {
       (async () => {
         try {
           const response = await axios
-            .post(`${URL}/api/file/img`, formData)
+            .post(
+              `https://human-anatomy-backend.onrender.com/api/file/img`,
+              formData
+            )
             .then((response) => {
               console.log(response, "RESPONSE");
               response.data &&

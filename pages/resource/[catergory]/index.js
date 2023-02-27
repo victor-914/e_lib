@@ -16,7 +16,10 @@ function Catergory() {
     (async () => {
       try {
         setState("loading");
-        const response = await axios.get(`${URL}/api/file/${catergory}`);
+        const response = await axios.get(
+          `${process.env.API_URL}/api/file/${catergory}`
+        );
+
         let data = response.data;
         setFilteredData(data);
         setState("success");

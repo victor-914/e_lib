@@ -24,7 +24,10 @@ function Login({ setState }) {
     e.preventDefault();
     try {
       const response = await axios
-        .post(`${URL}/api/author/login`, login)
+        .post(
+          `https://human-anatomy-backend.onrender.com/api/author/login`,
+          login
+        )
         .then((response) => {
           setAuth(response?.data);
           localStorage.setItem("access", response?.data);

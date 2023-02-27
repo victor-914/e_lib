@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function CreateAcount({ setState }) {
-  const URL = process.env.API_URL;
+
 
   const [create, setCreate] = useState({
     firstName: "",
@@ -23,11 +23,14 @@ function CreateAcount({ setState }) {
     e.preventDefault();
     try {
       const response = await axios
-        .post(`${URL}/api/author/register`, {
-          create,
-        })
+        .post(
+          `https://human-anatomy-backend.onrender.com/api/author/register`,
+          {
+            create,
+          }
+        )
         .then((response) => {
-          console.log(response.data);
+          console.log(URL, "dd");
           setCreate({});
           setState("login");
         });
