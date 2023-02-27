@@ -3,6 +3,8 @@ import Loader from "../accessoryComponents/Loader";
 import axios from "axios";
 import Image from "next/image";
 function ModelPage({ queryObj }) {
+  const URL = process.env.API_URL;
+
   const [model, setModel] = useState();
   const [state, setState] = useState();
 
@@ -10,7 +12,7 @@ function ModelPage({ queryObj }) {
     (async () => {
       setState("loading");
       const response = await axios
-        .get(`http://localhost:5000/api/file/${queryObj.catergory}`)
+        .get(`${URL}/api/file/${queryObj.catergory}`)
         .then((response) => {
           let data = response.data;
           data = data.filter((item) => item._id === queryObj.modelId);

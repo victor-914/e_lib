@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import AuthContext from "../../context/contextProvider";
 
 function Login({ setState }) {
+  const URL = process.env.API_URL;
+
   const { setAuth, auth } = useContext(AuthContext);
 
   const [login, setLogin] = useState({
@@ -22,7 +24,7 @@ function Login({ setState }) {
     e.preventDefault();
     try {
       const response = await axios
-        .post("http://localhost:5000/api/author/login", login)
+        .post(`${URL}/api/author/login`, login)
         .then((response) => {
           setAuth(response?.data);
           localStorage.setItem("access", response?.data);
@@ -41,6 +43,7 @@ function Login({ setState }) {
           type="text"
           name="email"
           id="email"
+          required
           value={login.email}
           onChange={handleChange}
           class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
@@ -55,6 +58,7 @@ function Login({ setState }) {
           type="password"
           name="password"
           id="password"
+          required
           onChange={handleChange}
           value={login.password}
           class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"

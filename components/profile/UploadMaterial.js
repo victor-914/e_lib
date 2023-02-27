@@ -3,6 +3,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import FormData from "form-data";
 function UploadMaterial() {
+  const URL = process.env.API_URL;
+
   useEffect(() => {
     const auth = localStorage.getItem("access");
     if (!auth) {
@@ -48,7 +50,7 @@ function UploadMaterial() {
       (async () => {
         try {
           const response = await axios
-            .post(`http://localhost:5000/api/file/img`, formData)
+            .post(`${URL}/api/file/img`, formData)
             .then((response) => {
               console.log(response, "RESPONSE");
               response.data &&
@@ -72,25 +74,34 @@ function UploadMaterial() {
   };
 
   return (
-    <form
-      encType="multipart/form-data"
-      method="post"
-      onSubmit={handleSubmit}
-      class=" w-full flex flex-col items-center justify-around bg-slate-100 p-6 h-auto"
-    >
-      <header className="uppercase font-bold"> Add new resource</header>
+    <>
+      <div className="w-fill p-2 flex justify-end items-center">
+        <button
+          className="p-1  text-white hover:text-white hover:bg-green-500 rounded"
+          onClick={handleLogout}
+        >
+          logout
+        </button>
+      </div>
+      <form
+        encType="multipart/form-data"
+        method="post"
+        onSubmit={handleSubmit}
+        class=" w-full flex flex-col items-center justify-around bg-slate-100 p-6 h-auto"
+      >
+        <header className="uppercase font-bold"> Add new resource</header>
 
-      <div class="flex justify-center p-4">
-        <div class="mb-3 xl:w-96">
-          <label
-            for="exampleFormControlInput1"
-            class="form-label inline-block mb-2 text-gray-700"
-          >
-            Title of material
-          </label>
-          <input
-            type="text"
-            class="
+        <div class="flex justify-center p-4">
+          <div class="mb-3 xl:w-96">
+            <label
+              for="exampleFormControlInput1"
+              class="form-label inline-block mb-2 text-gray-700"
+            >
+              Title of material
+            </label>
+            <input
+              type="text"
+              class="
         form-control
         block
         w-96
@@ -107,20 +118,20 @@ function UploadMaterial() {
         m-0
         focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none
       "
-            id="title"
-            placeholder="e.g upper limb"
-            name="title"
-            required
-            value={state.title}
-            onChange={handleChange}
-          />
+              id="title"
+              placeholder="e.g upper limb"
+              name="title"
+              required
+              value={state.title}
+              onChange={handleChange}
+            />
+          </div>
         </div>
-      </div>
 
-      <div class="flex justify-center">
-        <div class="mb-3 w-96">
-          <input
-            class="form-control
+        <div class="flex justify-center">
+          <div class="mb-3 w-96">
+            <input
+              class="form-control
     block
     w-full
     px-3
@@ -135,29 +146,29 @@ function UploadMaterial() {
     ease-in-out
     m-0
     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            type="file"
-            name="file"
-            id="file"
-            required
-            placeholder="add image"
-            // multiple
-            accept="image/*"
-            value={state.file}
-            onChange={handleChange}
-          />
+              type="file"
+              name="file"
+              id="file"
+              required
+              placeholder="add image"
+              // multiple
+              accept="image/*"
+              value={state.file}
+              onChange={handleChange}
+            />
+          </div>
         </div>
-      </div>
 
-      <div class="flex justify-center">
-        <div class="mb-3 xl:w-96 w-96">
-          <label
-            for="exampleFormControlTextarea1"
-            class="form-label inline-block mb-2 text-gray-700"
-          >
-            Comments
-          </label>
-          <textarea
-            class="
+        <div class="flex justify-center">
+          <div class="mb-3 xl:w-96 w-96">
+            <label
+              for="exampleFormControlTextarea1"
+              class="form-label inline-block mb-2 text-gray-700"
+            >
+              Comments
+            </label>
+            <textarea
+              class="
         form-control
         block
         w-full
@@ -174,24 +185,24 @@ function UploadMaterial() {
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
       "
-            id="comment"
-            placeholder="Your message"
-            type="text"
-            name="comment"
-            required
-            value={state.comment}
-            onChange={handleChange}
-          ></textarea>
+              id="comment"
+              placeholder="Your message"
+              type="text"
+              name="comment"
+              required
+              value={state.comment}
+              onChange={handleChange}
+            ></textarea>
+          </div>
         </div>
-      </div>
 
-      <div class="flex justify-center">
-        <div class="mb-3 xl:w-96">
-          <label className="form-label inline-block mb-2 text-gray-700">
-            Catergory
-          </label>
-          <select
-            class="form-select appearance-none
+        <div class="flex justify-center">
+          <div class="mb-3 xl:w-96">
+            <label className="form-label inline-block mb-2 text-gray-700">
+              Catergory
+            </label>
+            <select
+              class="form-select appearance-none
           
       block
       w-full
@@ -208,33 +219,34 @@ function UploadMaterial() {
       w-96
       m-0
       focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
-            aria-label="Default select example"
-            onChange={handleChange}
-            value={state.catergory}
-            required
-            name="catergory"
-          >
-            <option>--select catergory--</option>
-            <option value="upper limb">Upper limb</option>
-            <option value="lower limb">Lower limb</option>
-            <option value="thorax">Thorax</option>
-            <option value="abdomen">Abdomen</option>
-            <option value="head">Head</option>
-            <option value="others">Others</option>
-          </select>
+              aria-label="Default select example"
+              onChange={handleChange}
+              value={state.catergory}
+              required
+              name="catergory"
+            >
+              <option>--select catergory--</option>
+              <option value="upper limb">Upper limb</option>
+              <option value="lower limb">Lower limb</option>
+              <option value="thorax">Thorax</option>
+              <option value="abdomen">Abdomen</option>
+              <option value="head">Head</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3 w-96 p-4 flex justify-center items-center">
-        <button
-          type="button"
-          onClick={handleSubmit}
-          class="inline-block px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out"
-        >
-          Publish
-        </button>
-      </div>
-    </form>
+        <div class="mb-3 w-96 p-4 flex justify-center items-center">
+          <button
+            type="button"
+            onClick={handleSubmit}
+            class="inline-block px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out"
+          >
+            Publish
+          </button>
+        </div>
+      </form>
+    </>
   );
 }
 

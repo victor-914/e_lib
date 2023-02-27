@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function CreateAcount({ setState }) {
+  const URL = process.env.API_URL;
+
   const [create, setCreate] = useState({
     firstName: "",
     lastName: "",
@@ -21,7 +23,7 @@ function CreateAcount({ setState }) {
     e.preventDefault();
     try {
       const response = await axios
-        .post("http://localhost:5000/api/author/register", {
+        .post(`${URL}/api/author/register`, {
           create,
         })
         .then((response) => {
@@ -39,6 +41,7 @@ function CreateAcount({ setState }) {
         <input
           type="text"
           name="firstName"
+          required
           id="create-name-input"
           value={`${create.firstName ? create.firstName : ""}`}
           onChange={handleChange}
@@ -50,6 +53,7 @@ function CreateAcount({ setState }) {
         <input
           type="text"
           name="lastName"
+          required
           id="name"
           value={`${create.lastName ? create.lastName : ""}`}
           onChange={handleChange}
@@ -61,6 +65,7 @@ function CreateAcount({ setState }) {
         <input
           type="text"
           name="email"
+          required
           id="email"
           value={`${create.email ? create.email : ""}`}
           onChange={handleChange}
@@ -73,6 +78,7 @@ function CreateAcount({ setState }) {
         <input
           name="password"
           id="password"
+          required
           value={`${create.password ? create.password : ""}`}
           onChange={handleChange}
           type="password"
