@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 import FormData from "form-data";
 import { handleLogout } from "../../utils/helperFunction";
 function UploadMaterial() {
-  // useEffect(() => {
-  //   const auth = localStorage.getItem("access");
-  //   if (!auth) {
-  //     router.push("/login");
-  //   }
-  // }, []);
+  useEffect(() => {
+    const auth = localStorage.getItem("access");
+    if (!auth) {
+      router.push("/login");
+    }
+  }, []);
 
   const [state, setState] = useState({
     title: "",
