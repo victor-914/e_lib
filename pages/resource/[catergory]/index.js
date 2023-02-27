@@ -17,7 +17,7 @@ function Catergory() {
       try {
         setState("loading");
         const response = await axios.get(
-          `${process.env.API_URL}/api/file/${catergory}`
+          `https://human-anatomy-backend.onrender.com/api/file/${catergory}`
         );
 
         let data = response.data;

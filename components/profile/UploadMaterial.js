@@ -54,10 +54,8 @@ function UploadMaterial() {
               formData
             )
             .then((response) => {
-              console.log(response, "RESPONSE");
-              response.data &&
-                setSuccess("uploaded successfully") &&
-                alert(success);
+              setSuccess("uploaded successfully");
+              alert(success);
             });
         } catch (e) {
           alert(e);
