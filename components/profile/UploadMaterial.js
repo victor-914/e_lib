@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 import FormData from "form-data";
 import { handleLogout } from "../../utils/helperFunction";
 function UploadMaterial() {
-  useEffect(() => {
-    const auth = localStorage.getItem("access");
-    if (!auth) {
-      router.push("/login");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const auth = localStorage.getItem("access");
+  //   if (!auth) {
+  //     router.push("/login");
+  //   }
+  // }, []);
 
   const [state, setState] = useState({
     title: "",
@@ -74,10 +74,10 @@ function UploadMaterial() {
   };
 
   return (
-    <>
-      <div className="w-fill p-2 flex justify-end items-center">
+    <section className="flex justify-between flex-col">
+      <div className="w-full  p-2 flex justify-end items-center overflow-x-hidden">
         <button
-          className="p-1  text-white hover:text-white hover:bg-green-500 rounded"
+          className="p-1  bg-green-500  shadow -lg text-white hover:text-white hover:bg-green-500 rounded"
           onClick={handleLogout}
         >
           logout
@@ -87,12 +87,12 @@ function UploadMaterial() {
         encType="multipart/form-data"
         method="post"
         onSubmit={handleSubmit}
-        class=" w-full flex flex-col items-center justify-around bg-slate-100 p-6 h-auto"
+        class=" w-full flex flex-col items-center justify-between  "
       >
-        <header className="uppercase font-bold"> Add new resource</header>
+        <header className="uppercase  p-2 font-bold"> Add new resource</header>
 
-        <div class="flex justify-center p-4">
-          <div class="mb-3 xl:w-96">
+        <div class="flex justify-center py-4 w-11/12">
+          <div class="mb-3  w-full xl:w-96 ">
             <label
               for="exampleFormControlInput1"
               class="form-label inline-block mb-2 text-gray-700"
@@ -104,9 +104,6 @@ function UploadMaterial() {
               class="
         form-control
         block
-        w-96
-        px-3
-        py-1.5
         text-base
         font-normal
         text-gray-700
@@ -115,6 +112,9 @@ function UploadMaterial() {
         rounded
         transition
         ease-in-out
+        w-full
+        px-2
+        py-1.5
         m-0
         focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none
       "
@@ -128,14 +128,11 @@ function UploadMaterial() {
           </div>
         </div>
 
-        <div class="flex justify-center">
-          <div class="mb-3 w-96">
+        <div class="flex justify-center w-11/12">
+          <div class="mb-3 w-full xl:w-96">
             <input
               class="form-control
     block
-    w-full
-    px-3
-    py-1.5
     text-base
     font-normal
     text-gray-700
@@ -144,8 +141,11 @@ function UploadMaterial() {
     rounded
     transition
     ease-in-out
+    w-full
+    py-1.5
+    px-1.5
     m-0
-    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+    focus:text-gray-700 focus:bg-white focus:border-blue-600  focus:outline-none"
               type="file"
               name="file"
               id="file"
@@ -159,8 +159,8 @@ function UploadMaterial() {
           </div>
         </div>
 
-        <div class="flex justify-center">
-          <div class="mb-3 xl:w-96 w-96">
+        <div class="flex justify-center  py-4 w-11/12">
+          <div class="mb-3 xl:w-96 w-full">
             <label
               for="exampleFormControlTextarea1"
               class="form-label inline-block mb-2 text-gray-700"
@@ -171,9 +171,9 @@ function UploadMaterial() {
               class="
         form-control
         block
+        h-40
+        px-2
         w-full
-        px-3
-        py-1.5
         text-base
         font-normal
         text-gray-700
@@ -196,8 +196,8 @@ function UploadMaterial() {
           </div>
         </div>
 
-        <div class="flex justify-center">
-          <div class="mb-3 xl:w-96">
+        <div class="flex justify-center w-11/12 ">
+          <div class="mb-3 xl:w-96 w-full">
             <label className="form-label inline-block mb-2 text-gray-700">
               Catergory
             </label>
@@ -216,7 +216,7 @@ function UploadMaterial() {
       rounded
       transition
       ease-in-out
-      w-96
+      w-full
       m-0
       focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
               aria-label="Default select example"
@@ -236,7 +236,7 @@ function UploadMaterial() {
           </div>
         </div>
 
-        <div class="mb-3 w-96 p-4 flex justify-center items-center">
+        <div class="mb-3 w-full  flex justify-center items-center">
           <button
             type="button"
             onClick={handleSubmit}
@@ -246,7 +246,7 @@ function UploadMaterial() {
           </button>
         </div>
       </form>
-    </>
+    </section>
   );
 }
 

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import UploadMaterial from "./UploadMaterial";
 import Footer from "../footer/Footer";
 import styled from "styled-components";
 
 function Profile() {
-  const [state, setState] = useState("upload");
   return (
     <StyledProfile>
       <UploadMaterial />

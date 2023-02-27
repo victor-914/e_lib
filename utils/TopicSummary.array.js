@@ -7,21 +7,21 @@ const TopicSummary = [
     _id: "1",
     title: "Thorax",
     img: thorax,
-    link: "#",
+    link: "/resource/thorax",
   },
 
   {
     _id: "2",
     title: "Head",
     img: head,
-    link: "#",
+    link: "/resource/head",
   },
 
   {
     _id: "3",
     title: "Lower Limb",
     img: lowerLimb,
-    link: "#",
+    link: "/resource/lowerlimb",
   },
 ];
 
