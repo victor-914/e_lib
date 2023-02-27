@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import FormData from "form-data";
+import { handleLogout } from "../../utils/helperFunction";
 function UploadMaterial() {
   const URL = process.env.API_URL;
 
