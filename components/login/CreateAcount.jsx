@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function CreateAcount({ setState }) {
-
-
   const [create, setCreate] = useState({
     firstName: "",
     lastName: "",
@@ -15,7 +13,6 @@ function CreateAcount({ setState }) {
     e.preventDefault();
     const { name, value } = e.target;
     setCreate({ ...create, [name]: value });
-    console.log(create, "jdjd");
   };
 
   const handleSubmit = async (e) => {
@@ -30,8 +27,12 @@ function CreateAcount({ setState }) {
           }
         )
         .then((response) => {
-          console.log(URL, "dd");
-          setCreate({});
+          setCreate({
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+          });
           setState("login");
         });
     } catch (err) {
@@ -39,14 +40,14 @@ function CreateAcount({ setState }) {
     }
   };
   return (
-    <form className="form pt-8">
+    <form className="form pt-8 sm:w-3/5 sm:m-auto pb-8" onSubmit={handleSubmit}>
       <div class="mb-6">
         <input
           type="text"
           name="firstName"
           required
           id="create-name-input"
-          value={`${create.firstName ? create.firstName : ""}`}
+          value={create.firstName}
           onChange={handleChange}
           class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
           placeholder="first name"
@@ -58,7 +59,7 @@ function CreateAcount({ setState }) {
           name="lastName"
           required
           id="name"
-          value={`${create.lastName ? create.lastName : ""}`}
+          value={create.lastName}
           onChange={handleChange}
           class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
           placeholder="last name"
@@ -70,7 +71,7 @@ function CreateAcount({ setState }) {
           name="email"
           required
           id="email"
-          value={`${create.email ? create.email : ""}`}
+          value={create.email}
           onChange={handleChange}
           class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
           placeholder="Email address"
@@ -82,7 +83,7 @@ function CreateAcount({ setState }) {
           name="password"
           id="password"
           required
-          value={`${create.password ? create.password : ""}`}
+          value={create.password}
           onChange={handleChange}
           type="password"
           class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
@@ -92,7 +93,6 @@ function CreateAcount({ setState }) {
 
       <button
         type="submit"
-        onClick={handleSubmit}
         class="inline-block px-7 py-3 bg-green-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out w-full"
       >
         Create account

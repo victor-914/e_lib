@@ -5,8 +5,14 @@ import Image from "next/image";
 function ModelPreview({ item }) {
   return (
     <section className=" w-80 rounded-lg bg-slate-200 shadow-lg   flex flex-col relative  justify-between p-2 relative h-auto mb-8">
-      <main className="relative w-full  h-60 p-2">
-        <Image src={item.url} layout="fill" className="rounded" />
+      <main className="relative w-full  h-auto p-2">
+        <Image
+          src={item.url}
+          layout="responsive"
+          width={"100%"}
+          height={"100%"}
+          className="rounded"
+        />
       </main>
       <h5 className="text-gray-900 p-4  mt-2 font-bold  text-center w-full text-white  bg-green-600">
         {item.title}

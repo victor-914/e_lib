@@ -34,8 +34,15 @@ function ModelPage({ queryObj }) {
               {" "}
               {model?.title}
             </header>
-            <main className="w-full  shadow-lg rounded p-2  h-96 relative">
-              <Image src={model?.url} layout="fill" className="rounded" />
+            <main className="w-full  shadow-lg rounded p-2    relative">
+              <Image
+                src={model?.url}
+                layout="responsive"
+                width={"100%"}
+                position={"absolute"}
+                height={"80%"}
+                className="rounded"
+              />
             </main>
             <div className="w-4/5 m-auto p-6 mt-4 mb-6 bg-slate-100">
               {model.comment}

@@ -55,7 +55,7 @@ function UploadMaterial() {
             )
             .then((response) => {
               setSuccess("uploaded successfully");
-              alert(success);
+              alert("upload successfull");
             });
         } catch (e) {
           alert(e);
