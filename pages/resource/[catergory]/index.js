@@ -22,6 +22,9 @@ function Catergory() {
 
         let data = response.data;
         setFilteredData(data);
+        if (filteredData.length === 0) {
+          setFilteredData("empty");
+        }
         setState("success");
       } catch (e) {
         alert(e);

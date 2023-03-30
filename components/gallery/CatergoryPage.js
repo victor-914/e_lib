@@ -2,6 +2,7 @@ import React from "react";
 import PerModel from "./PerModel";
 import { useRouter } from "next/router";
 import Loader from "../accessoryComponents/Loader";
+import NotFound from "../accessoryComponents/NotFound";
 
 function CatergoryPage({ filteredData, state }) {
   const router = useRouter();
@@ -11,6 +12,8 @@ function CatergoryPage({ filteredData, state }) {
     <>
       {state === "loading" ? (
         <Loader />
+      ) : state === "empty" ? (
+        <NotFound />
       ) : (
         <>
           <header className="w-full p-6 text-center">
